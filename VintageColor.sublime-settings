@@ -2,9 +2,6 @@
     "insert_theme":      "Packages/VintageColor/Dracula-Insert.tmTheme",
     "insert_highlight_line": true,
 
-    "command_theme":     "Packages/VintageColor/Dracula.tmTheme",
-    "command_highlight_line": false,
-
     "visual_theme":      "Packages/VintageColor/Dracula-Visual.tmTheme",
     "visual_line_theme": "Packages/VintageColor/Dracula-Visual.tmTheme",
 }
