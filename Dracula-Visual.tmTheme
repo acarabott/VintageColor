@@ -22,7 +22,7 @@
 			<key>settings</key>
 			<dict>
 				<key>background</key>
-				<string>#000045</string>
+				<string>#090E49</string>
 				<key>caret</key>
 				<string>#f8f8f0</string>
 				<key>foreground</key>
@@ -32,7 +32,7 @@
 				<key>lineHighlight</key>
 				<string>#44475a</string>
 				<key>selection</key>
-				<string>#44475a</string>
+				<string>#3C416E</string>
 				<key>findHighlight</key>
 				<string>#effb7b</string>
 				<key>findHighlightForeground</key>
