@@ -2,6 +2,8 @@
 
 Add-on for the Vintage package, changes your color scheme depending on the current vim mode.
 
+![Screen capture](https://thumbs.gfycat.com/SnappyReflectingLcont-size_restricted.gif)
+
 Different schemes can be set for `Insert`, `Visual` and `Visual Line` modes. `Command` mode uses your global color scheme.
 
 Additionally, line highlighting can be enabled for `Insert` mode, for line highlighting in all modes use global preferences.
