@@ -8,6 +8,10 @@ Different schemes can be set for `Insert`, `Visual` and `Visual Line` modes. `Co
 
 Additionally, line highlighting can be enabled for `Insert` mode, for line highlighting in all modes use global preferences.
 
+## Installation
+
+Via Package Control!
+
 ## Included Theme
 
 This package includes modified versions of the [Dracula Theme](https://draculatheme.com/).
