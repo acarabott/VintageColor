@@ -1,51 +1,44 @@
 import sublime
 import sublime_plugin
 
+mode_commands = {
+    'enter_insert_mode': 'insert',
+    'exit_insert_mode': 'command',
+    'enter_visual_mode': 'visual',
+    'enter_visual_line_mode': 'visual_line',
+    'exit_visual_mode': 'command'
+}
+
 
 class VintageColor(sublime_plugin.EventListener):
     def __init__(self):
         self.current_mode = 'command'
 
     def on_post_text_command(self, view, command_name, args):
-        is_insert_mode = not view.settings().get('inverse_caret_state')
+        # Update mode
+        mode = mode_commands[command_name] if command_name in mode_commands else None
 
-        mode = ('insert' if is_insert_mode else
-                'command' if (command_name == 'exit_insert_mode' or
-                              command_name == 'exit_visual_mode') else
-                'visual' if command_name == 'enter_visual_mode' else
-                'visual_line' if command_name == 'enter_visual_line_mode' else
-                None)
+        inserted_without_cmd = not view.settings().get('inverse_caret_state')
+        if mode is None and inserted_without_cmd and self.current_mode != 'insert':
+            mode = 'insert'
 
-        if mode is None or mode == self.current_mode:
+        if mode is None:
             return
 
         self.current_mode = mode
 
-        if command_name == 'enter_insert_mode':
-            mode = 'insert'
-        elif command_name in ['exit_insert_mode', 'exit_visual_mode']:
-            mode = 'command'
-        elif command_name == 'enter_visual_mode':
-            mode = 'visual'
-        elif command_name == 'enter_visual_line_mode':
-            mode = 'visual_line'
-
+        # Update theme
         plugin_settings = sublime.load_settings('VintageColor.sublime-settings')
-        global_settings = sublime.load_settings("Preferences.sublime-settings")
+        theme = plugin_settings.get('{}_theme'.format(mode))
 
-        # update color scheme
-        if mode == 'command':
-            theme = global_settings.get("color_scheme")
+        if theme:
+            view.settings().set('color_scheme', theme)
         else:
-            theme = plugin_settings.get('{}_theme'.format(mode))
+            view.settings().erase('color_scheme')
 
-        view.settings().set('color_scheme', theme)
-
-        # highlight line
-        highlight_line = global_settings.get("highlight_line")
-
+        # Highlight line
         if mode == 'insert' :
-            settings_highlight = plugin_settings.get('insert_highlight_line')
-            highlight_line = highlight_line or settings_highlight
-
-        view.settings().set("highlight_line", highlight_line)
+            highlight_line = plugin_settings.get('insert_highlight_line')
+            view.settings().set('highlight_line', highlight_line)
+        else:
+            view.settings().erase('highlight_line')
