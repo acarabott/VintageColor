@@ -2,11 +2,18 @@ import sublime
 import sublime_plugin
 
 mode_commands = {
+    # Vintage
     'enter_insert_mode': 'insert',
     'exit_insert_mode': 'command',
     'enter_visual_mode': 'visual',
     'enter_visual_line_mode': 'visual_line',
-    'exit_visual_mode': 'command'
+    'exit_visual_mode': 'command',
+
+    # NeoVintageous
+    '_enter_insert_mode': 'insert',
+    '_enter_visual_mode': 'visual',
+    '_enter_visual_line_mode': 'visual_line',
+    '_enter_normal_mode': 'command'
 }
 
 
@@ -37,7 +44,7 @@ class VintageColor(sublime_plugin.EventListener):
             view.settings().erase('color_scheme')
 
         # Highlight line
-        if mode == 'insert' :
+        if mode == 'insert':
             highlight_line = plugin_settings.get('insert_highlight_line')
             view.settings().set('highlight_line', highlight_line)
         else:

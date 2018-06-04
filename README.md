@@ -1,6 +1,6 @@
 # VintageColor
 
-Add-on for the Vintage package, changes your color scheme depending on the current vim mode.
+Add-on for the Vintage and NeoVimtageous packages, changes your color scheme depending on the current vim mode.
 
 ![Screen capture](https://thumbs.gfycat.com/SnappyReflectingLcont-size_restricted.gif)
 
